@@ -2,7 +2,6 @@
 
 namespace app\lib\exception;
 
-use Exception;
 use think\exception\Handle;
 use think\Log;
 use think\Request;
@@ -13,7 +12,7 @@ class ExceptionHandler extends Handle
     private $msg;
     private $errorCode;
 
-    public function render(Exception $e)
+    public function render(\Exception $e)
     {
         if ($e instanceof BaseException) {
             // 如果是自定义的异常
@@ -40,7 +39,7 @@ class ExceptionHandler extends Handle
         return json($result, $this->code);
     }
 
-    private function recodeErrorLog(Exception $e)
+    private function recodeErrorLog(\Exception $e)
     {
         Log::init([
             'type' => 'File',
