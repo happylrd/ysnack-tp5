@@ -18,11 +18,11 @@ class Banner
     {
         (new IDMustBePositiveInt())->goCheck();
 
-        $banner = BannerModel::get($id);
-//        $banner = BannerModel::getBannerByID($id);
+        $banner = BannerModel::getBannerByID($id);
         if (!$banner) {
             throw new BannerMissException();
         }
+
         return $banner;
     }
 }
