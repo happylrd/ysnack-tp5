@@ -19,7 +19,7 @@ class Theme
         $ids = explode(',', $ids);
 
         $result = ThemeModel::listThemeByIDs($ids);
-        if (!$result) {
+        if ($result->isEmpty()) {
             throw new ThemeException();
         }
         return $result;

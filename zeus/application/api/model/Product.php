@@ -11,7 +11,7 @@ class Product extends BaseModel
         return $this->prefixImgUrl($value, $data);
     }
 
-    public static function getMostRecent($count)
+    public static function listMostRecent($count)
     {
         $products = self::limit($count)
             ->order('create_time desc')

@@ -15,7 +15,6 @@ class Banner extends BaseModel
     {
         $banner = self::with(['items', 'items.img'])
             ->find($id);
-
         return $banner;
     }
 }

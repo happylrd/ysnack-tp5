@@ -15,14 +15,13 @@ class Product
     {
         (new Count())->goCheck();
 
-        $products = ProductModel::getMostRecent($count);
-        if (!$products) {
+        $products = ProductModel::listMostRecent($count);
+        if ($products->isEmpty()) {
             throw new ProductException();
         }
 
         // hide `summary` field temporarily
-        $collection = collection($products);
-        $products = $collection->hidden(['summary']);
+        $products = $products->hidden(['summary']);
 
         return $products;
     }
