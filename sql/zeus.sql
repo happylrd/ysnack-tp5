@@ -1,7 +1,7 @@
 /*
 DataBase Version: 0.1
-Be used For Pretty Vendor
-Date: 2017-04-16 20:16:00
+Be used For YSnack
+Date: 2017-04-21 19:17:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
