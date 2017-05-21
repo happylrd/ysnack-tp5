@@ -4,6 +4,7 @@ namespace app\api\controller\v1;
 
 use app\api\validate\Count;
 use app\api\model\Product as ProductModel;
+use app\api\validate\IDMustBePositiveInt;
 use app\lib\exception\ProductException;
 
 class Product
@@ -16,6 +17,24 @@ class Product
         (new Count())->goCheck();
 
         $products = ProductModel::listMostRecent($count);
+        if ($products->isEmpty()) {
+            throw new ProductException();
+        }
+
+        // hide `summary` field temporarily
+        $products = $products->hidden(['summary']);
+
+        return $products;
+    }
+
+    /**
+     * @url /product/by_category?id=3
+     */
+    public function getAllInCategory($id)
+    {
+        (new IDMustBePositiveInt())->goCheck();
+
+        $products = ProductModel::listByCategoryID($id);
         if ($products->isEmpty()) {
             throw new ProductException();
         }
