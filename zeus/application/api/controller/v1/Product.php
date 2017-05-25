@@ -44,4 +44,19 @@ class Product
 
         return $products;
     }
+
+    /**
+     * @url /product/:id
+     */
+    public function getOne($id)
+    {
+        (new IDMustBePositiveInt())->goCheck();
+
+        $product = ProductModel::getProductDetail($id);
+        if (!$product) {
+            throw new ProductException();
+        }
+
+        return $product;
+    }
 }
